@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ApexDM options</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main>
+    <h1>ApexDM extension</h1>
+    <p class="lead">Paste the pairing token shown in the ApexDM desktop app, under Browser.</p>
+    <label>Pairing token
+      <input id="token" type="text" autocomplete="off" spellcheck="false" />
+    </label>
+    <label>Port
+      <input id="port" type="number" min="1024" max="65535" />
+    </label>
+    <label>When the browser starts a download
+      <select id="mode">
+        <option value="smart">Catch known file types and large files</option>
+        <option value="all">Catch every file except web pages</option>
+        <option value="off">Only when I choose ApexDM from the menu</option>
+      </select>
+    </label>
+    <label>Also catch unknown files larger than (MB)
+      <input id="large" type="number" min="1" max="1024" />
+    </label>
+    <label>File types
+      <textarea id="extensions" spellcheck="false"></textarea>
+    </label>
+    <div class="actions">
+      <button id="save" type="button">Save</button>
+      <button id="test" type="button">Test connection</button>
+    </div>
+    <p id="note"></p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

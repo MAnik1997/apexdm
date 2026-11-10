@@ -1,0 +1,16 @@
+{
+  "name": "apexdm",
+  "productName": "ApexDM",
+  "version": "1.0.0",
+  "description": "Multi-connection download manager with a browser extension.",
+  "main": "src/main/index.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node scripts/selftest.js"
+  },
+  "devDependencies": {
+    "electron": "^45.2.3"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ApexDM</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="brand">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#ffb020"/>
+          <path d="M16 7v12" fill="none" stroke="#1a1203" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M11 15l5 6 5-6" fill="none" stroke="#1a1203" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 25h14" stroke="#1a1203" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <strong>ApexDM</strong>
+          <small>Download manager</small>
+        </div>
+      </div>
+      <div class="speed-readout">
+        <span id="speed">0 B/s</span>
+        <canvas id="spark" width="148" height="36" aria-hidden="true"></canvas>
+      </div>
+      <div class="header-actions">
+        <button id="pause-all" type="button">Pause all</button>
+        <button id="resume-all" type="button">Resume all</button>
+        <button id="add-open" class="primary" type="button" title="Ctrl+N">Add download</button>
+      </div>
+    </header>
+    <div class="shell">
+      <nav id="nav">
+        <p class="nav-label">Library</p>
+        <button type="button" data-view="all" data-count="all" class="active">All <span></span></button>
+        <button type="button" data-view="active" data-count="active">Active <span></span></button>
+        <button type="button" data-view="queued" data-count="queued">Queued <span></span></button>
+        <button type="button" data-view="done" data-count="done">Finished <span></span></button>
+        <button type="button" data-view="failed" data-count="failed">Failed <span></span></button>
+        <p class="nav-label">Categories</p>
+        <button type="button" data-view="cat:archives" data-count="cat:archives">Archives <span></span></button>
+        <button type="button" data-view="cat:programs" data-count="cat:programs">Programs <span></span></button>
+        <button type="button" data-view="cat:video" data-count="cat:video">Video <span></span></button>
+        <button type="button" data-view="cat:music" data-count="cat:music">Music <span></span></button>
+        <button type="button" data-view="cat:documents" data-count="cat:documents">Documents <span></span></button>
+        <button type="button" data-view="cat:images" data-count="cat:images">Images <span></span></button>
+        <button type="button" data-view="cat:other" data-count="cat:other">Other <span></span></button>
+        <p class="nav-label">App</p>
+        <button type="button" data-view="browser">Browser</button>
+        <button type="button" data-view="settings">Settings</button>
+      </nav>
+      <section class="workspace">
+        <div class="toolbar" id="toolbar">
+          <input id="search" type="search" placeholder="Search name or link" />
+          <span id="summary"></span>
+        </div>
+        <div id="view-library" class="stage">
+          <div id="list"></div>
+          <aside id="drawer" hidden></aside>
+        </div>
+        <div id="view-browser" class="panel" hidden></div>
+        <div id="view-settings" class="panel" hidden></div>
+      </section>
+    </div>
+    <footer>
+      <span id="foot-left"></span>
+      <span id="foot-right"></span>
+    </footer>
+  </div>
+  <div id="toast" class="toast" hidden></div>
+  <div id="backdrop" class="backdrop" hidden>
+    <form id="add-form" class="modal">
+      <h2>Add download</h2>
+      <label>Links
+        <textarea id="add-urls" placeholder="One http or https link per line" required></textarea>
+      </label>
+      <div class="split">
+        <label>Save as
+          <input id="add-name" type="text" placeholder="Use the server name" />
+        </label>
+        <label>Category
+          <select id="add-cat">
+            <option value="auto">Auto</option>
+            <option value="archives">Archives</option>
+            <option value="programs">Programs</option>
+            <option value="video">Video</option>
+            <option value="music">Music</option>
+            <option value="documents">Documents</option>
+            <option value="images">Images</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+      </div>
+      <div class="split">
+        <label>Connections
+          <input id="add-conn" type="number" min="1" max="32" value="8" />
+        </label>
+        <label class="checkline">
+          <input id="add-now" type="checkbox" checked />
+          Start now
+        </label>
+      </div>
+      <div class="folder-row">
+        <span id="add-dir"></span>
+        <button id="add-browse" type="button">Folder</button>
+      </div>
+      <p id="add-error" class="form-error" hidden></p>
+      <div class="modal-actions">
+        <button type="button" id="add-cancel">Cancel</button>
+        <button type="submit" class="primary">Add</button>
+      </div>
+    </form>
+  </div>
+  <script src="../shared/format.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
